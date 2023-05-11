@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+      <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+      <div class="login-form">
+        <div class="sign-in-htm">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+            <div class="group">
+              <label for="emailL" class="label">Correo Electrónico</label>
+              <input id="emailL" type="text" class="input" formControlName="emailL">
+            </div>
+            <div class="group">
+              <label for="passwordL" class="label">Contraseña</label>
+              <input id="passwordL" type="password" class="input" data-type="password" formControlName="passwordL">
+            </div>
+            <div class="group">
+              <input id="check" type="checkbox" class="check" checked>
+              <label for="check"><span class="icon"></span> Mantenerme Logueado</label>
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Ingresar">
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <a href="#forgot">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+        <div class="sign-up-htm">
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()">
+            <div class="group">
+              <label for="emailS" class="label">Correo Electrónico</label>
+              <input id="emailS" type="text" class="input" formControlName="emailS">
+            </div>
+            <div class="group">
+              <label for="passwordS" class="label">Contraseña</label>
+              <input id="passwordS" type="password" class="input" data-type="password" formControlName="passwordS">
+            </div>
+            <div class="group">
+              <label for="passwordRep" class="label">Repetir Contraseña</label>
+              <input id="passwordRep" type="password" class="input" data-type="password" formControlName="passwordRep">
+            </div>
+
+            <div class="group">
+              <input type="submit" class="button" value="Registrarse">
+            </div>
+          </form>
+          <div class="hr"></div>
+          <div class="foot-lnk">
+            <label for="tab-1">Ya esta registrad@?</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
