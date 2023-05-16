@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/labo4-sala-de-juegos-2023",
     "ignore": [
       "firebase.json",
       "**/.*",

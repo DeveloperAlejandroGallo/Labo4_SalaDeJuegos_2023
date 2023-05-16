@@ -3,11 +3,11 @@ import { Usuario } from 'src/app/models/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-quien-soy',
-  templateUrl: './quien-soy.component.html',
-  styleUrls: ['./quien-soy.component.scss']
+  selector: 'app-chat',
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.scss']
 })
-export class QuienSoyComponent implements OnInit{
+export class ChatComponent implements OnInit{
 
   constructor(private auth: AuthService) {}
 
@@ -16,6 +16,4 @@ export class QuienSoyComponent implements OnInit{
   ngOnInit(): void {
     this.usuarioConectado = this.auth.logInfo();
     }
-
-
 }

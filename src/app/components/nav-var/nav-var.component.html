@@ -1,10 +1,16 @@
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid" *ngIf="inputUsuarioConectado!.logueado">
+    <a class="navbar-brand" href="#" style="color: white">
+      <img src="../../../assets/LogueadoImg.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      {{inputUsuarioConectado!.nombre}}
+    </a>
+  </div>
   <form class="container-fluid justify-content-end">
-    <button routerLink="/home"  class="btn btn-outline-success" type="button">Home</button>
-    <button routerLink="/login" class="btn btn-outline-info" type="button">Login/Signup</button>
+    <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/home"  class="btn btn-outline-success" type="button" >Home</button>
+    <button  *ngIf="!inputUsuarioConectado!.logueado" routerLink="/login" class="btn btn-outline-info" type="button" >Login/Signup</button>
     <!-- <button routerLink="/signup" class="btn btn-outline-info" type="button">Signup</button> -->
-    <button routerLink="/quien-soy" class="btn btn-outline-danger" type="button">Quien Soy</button>
-    <button routerLink="/games" class="btn btn-outline-warning" type="button">Juegos</button>
-
+    <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/chat" class="btn btn-outline-warning" type="button">Chat</button>
+    <button routerLink="/quien-soy" class="btn btn-outline-light" type="button" >Quien Soy</button>
+    <button *ngIf="inputUsuarioConectado!.logueado" class="btn btn-outline-danger" type="button" (click)="onClickLogOut()">LogOut</button>
   </form>
 </nav>

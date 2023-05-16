@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user.interface';
+import { Usuario } from 'src/app/models/user.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { ToastMsgService } from 'src/app/services/toast-msg.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 
 @Component({
@@ -14,78 +16,149 @@ export class LoginComponent implements OnInit{
 
   loginForm!: FormGroup;
   signUpForm!: FormGroup;
-
-  user!: User;
+  estaConectado!: boolean;
+  emailUsuario!: string;
+  user!: Usuario;
+  usuarioConectado?: Usuario;
 
   constructor(
       public message: ToastMsgService,
-      private formBuilder: FormBuilder,
-      private router: Router  ) { }
+      private auth: AuthService,
+      private usrService: UsuarioService  ) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      emailL: ['', [Validators.required, Validators.email]],
-      passwordL: ['', Validators.required]
+    this.loginForm = new FormGroup({
+      emailLogin: new FormControl('', [Validators.required, Validators.email]),
+      passwordLogin: new FormControl('', Validators.required)
     });
 
-    this.signUpForm = this.formBuilder.group({
-      emailS: ['', [Validators.required, Validators.email]],
-      passwordS: ['', Validators.required],
-      passwordRep: ['', Validators.required],
-    });
+    this.signUpForm = new FormGroup({
+      emailSignUp: new FormControl('', Validators.email),
+      NombreSignUp: new FormControl('',Validators.pattern('^[a-zA-Z]+$')),
+      ApellidoSignUp: new FormControl('',Validators.pattern('^[a-zA-Z]+$')),
+      passwordSignUp: new FormControl('',Validators.min(4)),
+      passwordRepSignUp: new FormControl('',Validators.required),
+    },[Validators.required]);
 
+    //Me suscribo al iniciar a los usuarios.
+    this.usrService.traer();
+
+    this.usuarioConectado = this.auth.logInfo();
   }
 
 
   onSubmitSignUp() {
-    let email = this.signUpForm.get('emailS')?.value;
-    let password = this.signUpForm.get('passwordS')?.value;
+    let email = this.emailSignUp?.value;
+    let nombre = this.nombreSignUp?.value;
+    let apellido = this.apellidoSignUp?.value;
+    let password = this.passwordSignUp?.value;
 
-    let usrBD: User = this.getUser(email);
-
-    if(usrBD != null)
-    {
-      this.message.Warning("El usuario ya se encuentra registrado");
-      return;
-    }
-
-    if(password != this.signUpForm.get('passwordRep')?.value)
+    let usrBD: Usuario = this.getUser(email);
+    console.log(usrBD)
+    if(password != this.passwordRepSignUp?.value)
     {
       this.message.Error("Las contraseñas son distintas ");
       return;
     }
 
-    this.user = new User(email, password);
+    if(usrBD.id != "")
+    {
+      this.message.Warning("El usuario ya se encuentra registrado");
+      return;
+    }
+    this.user = {
+      id: "",
+      email: email,
+      nombre: nombre,
+      apellido: apellido,
+      clave: password,
+      foto: "",
+      logueado: false
+    }
 
-    localStorage.setItem(email, JSON.stringify(this.user));
-    this.message.Info("Usuario dado de alta correctamente");
+    // localStorage.setItem('usuarioLogueado', JSON.stringify(this.user));
+    // this.message.Info("Usuario dado de alta correctamente");
+      this.auth.registrarCuenta(this.user);
+
+
 
   }
 
   onSubmitLogin() {
-    let email = this.loginForm.get('emailL')?.value;
-    let password = this.loginForm.get('passwordL')?.value;
+    let email = this.emailLogin?.value;
+    let password = this.passwordLogin?.value;
 
-    let usrBD: User = this.getUser(email);
-    if (usrBD == null || usrBD.name != email || usrBD.password != password)
-    {
-      this.message.Error("Usuario o contraseña erroneos");
-      return;
+    this.auth.iniciarSesion(email, password);
+
+  }
+
+  getUser(email: string): Usuario {
+    let userAux: Usuario = {
+      id: "",
+      email: "",
+      nombre: "",
+      apellido: "",
+      clave: "",
+      foto: "",
+      logueado: false
     }
 
+    let usrBuscado = this.usrService.listadoUsuarios?.find(x=>x.email == email);
 
-    this.message.Info("Bienvenido " + usrBD.name);
+    if(usrBuscado){
+      userAux = {
+        id: usrBuscado.id,
+        email: usrBuscado.email,
+        nombre: usrBuscado.nombre,
+        apellido: usrBuscado.apellido,
+        clave: usrBuscado.clave,
+        foto: usrBuscado.foto,
+        logueado: this.auth.logueado()
+      }
+    }
 
-    this.router.navigate(['/home']);
+    return userAux ;
   }
 
-  getUser(email: string): User {
-    const usr = localStorage.getItem(email);
-    return usr ? JSON.parse(usr) : null;
+
+  ingresoAutomatico(nombre: string){
+    switch(nombre){
+      case "Ale":
+        this.loginForm.setValue({emailLogin: "ale@gmail.com", passwordLogin: "123456"});
+        break;
+      case "Coco":
+        this.loginForm.setValue({emailLogin: "coco@gmail.com", passwordLogin: "123456"});
+        break;
+    }
+
+    this.onSubmitLogin();
+
+
   }
 
 
+//getters
 
+  get emailSignUp(){
+    return this.signUpForm.get('emailSignUp');
+  }
+  get nombreSignUp() {
+    return this.signUpForm.get('NombreSignUp');
+  }
+  get apellidoSignUp(){
+    return this.signUpForm.get('ApellidoSignUp');
+  }
+  get passwordSignUp() {
+    return this.signUpForm.get('passwordSignUp');
+  }
+  get passwordRepSignUp() {
+    return this.signUpForm.get('passwordRepSignUp');
+  }
 
-
+  get emailLogin(){
+    return this.loginForm.get('emailLogin');
+  }
+  get passwordLogin() {
+    return this.loginForm.get('passwordLogin');
+  }
 }

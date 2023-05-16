@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background-image: url("../../../assets/abstract-glowing-tunnel.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.games-list {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.game-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.user-details {
+  width: 20%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos adicionales según tus necesidades */

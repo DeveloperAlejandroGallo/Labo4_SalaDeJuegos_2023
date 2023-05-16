@@ -43,6 +43,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { NavVarComponent } from './components/nav-var/nav-var.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ToastMsgService } from './services/toast-msg.service';
+import { ChatComponent } from './pages/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ToastMsgService } from './services/toast-msg.service';
     QuienSoyComponent,
     ErrorComponent,
     NavVarComponent,
+    ChatComponent,
 
   ],
   imports: [
