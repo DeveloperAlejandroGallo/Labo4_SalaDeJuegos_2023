@@ -6,6 +6,7 @@ import { UsuarioService } from './usuario.service';
 import { LogginLogService } from './loggin-log.service';
 import { Constantes } from '../models/constantes';
 import { Router } from '@angular/router';
+import { Auth, authState } from '@angular/fire/auth';
 
 
 
@@ -20,12 +21,15 @@ export class AuthService {
   constructor(private message: ToastMsgService,
               private usrService: UsuarioService,
               private logLogginService: LogginLogService,
-              private router: Router,) { }
+              private router: Router,
+              private auth: Auth) { }
 
   public iniciarSesion(email:string, password: string) {
 
     let i: number = 0;
     const auth = getAuth();
+
+    currentUser$: authState(this.auth);
 
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -97,7 +101,7 @@ export class AuthService {
   }
 
   public currentUser() {
-
+    const auth = getAuth();
     const usr = localStorage.getItem(Constantes.usuarioLocalStorage);
 
     return usr ? JSON.parse(usr) : null;
@@ -106,7 +110,7 @@ export class AuthService {
   public logueado() {
     const auth = getAuth();
 
-    return (auth.currentUser != null) && ((this.currentUser() as Usuario).email == auth.currentUser.email);
+    return (auth.currentUser != null);
   }
 
   public logInfo():Usuario{

@@ -1,4 +1,4 @@
-<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
+<!-- <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid" *ngIf="inputUsuarioConectado!.logueado">
     <a class="navbar-brand" href="#" style="color: white">
       <img src="../../../assets/LogueadoImg.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -8,9 +8,28 @@
   <form class="container-fluid justify-content-end">
     <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/home"  class="btn btn-outline-success" type="button" >Home</button>
     <button  *ngIf="!inputUsuarioConectado!.logueado" routerLink="/login" class="btn btn-outline-info" type="button" >Login/Signup</button>
-    <!-- <button routerLink="/signup" class="btn btn-outline-info" type="button">Signup</button> -->
+
     <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/chat" class="btn btn-outline-warning" type="button">Chat</button>
     <button routerLink="/quien-soy" class="btn btn-outline-light" type="button" >Quien Soy</button>
     <button *ngIf="inputUsuarioConectado!.logueado" class="btn btn-outline-danger" type="button" (click)="onClickLogOut()">LogOut</button>
   </form>
-</nav>
+</nav> -->
+
+<mat-toolbar color="primary">
+  <div>
+    <div *ngIf="inputUsuarioConectado!.nombre == ''; else elseBlock">Sala de Juegos</div>
+    <ng-template #elseBlock>
+      <img src="../../../assets/LogueadoImg.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      {{inputUsuarioConectado!.nombre}} {{inputUsuarioConectado!.apellido}}
+    </ng-template>
+  </div>
+
+  <div class="botones">
+    <button routerLink="/quien-soy" class="btn btn-outline-light" type="button" >Quien Soy</button>
+    <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/chat" class="btn btn-outline-warning" type="button">Chat</button>
+    <button *ngIf="!inputUsuarioConectado!.logueado" mat-button routerLink="/login"><mat-icon>login</mat-icon>Login</button>
+    <button *ngIf="inputUsuarioConectado!.logueado" mat-button (click)="onClickLogOut()">
+        <mat-icon>logout</mat-icon>LogOut
+      </button>
+  </div>
+</mat-toolbar>

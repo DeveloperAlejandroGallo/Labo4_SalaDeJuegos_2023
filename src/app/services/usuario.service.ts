@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionChanges, collectionData, CollectionReference, deleteDoc, doc, DocumentData, Firestore, getDoc, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
+import { addDoc, collection, collectionChanges, collectionData, CollectionReference, deleteDoc, doc, DocumentData, Firestore, getDoc, getDocs, query, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Usuario } from '../models/user.interface';
+import { Observable, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,19 @@ export class UsuarioService {
     deleteDoc(documento);
   }
 
+  get allUsers$(): Observable<Usuario[]>{
+    const coleccion = collection(this.firestore, this.colectionName);
+    const queryAll = query(coleccion);
+    return collectionData(queryAll) as Observable<Usuario[]>;
+  }
 
+  // get currentUserProfile$(): Observable<UserProfile | null>{
+  //   return this.auth.currentUser$.pipe(
+  //     switchMap((user)=>{
+  //       if(!user?.uid)
+  //     })
+  //   );
+  // }
 //Usuario
   nuevo(usuario: Usuario) {
 

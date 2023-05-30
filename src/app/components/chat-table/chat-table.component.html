@@ -1,0 +1,7 @@
+<mat-selection-list [multiple]="false">
+  <mat-divider></mat-divider>
+  <mat-list-option  *ngFor="let usuario of listadoDeUsuariosAMostrar | filterUser: usuarioActual.id: nombreBuscado " [value]="usuario.id" >
+
+  </mat-list-option>
+
+</mat-selection-list>

@@ -28,6 +28,12 @@ import { MatIconModule }  from '@angular/material/icon';
 import { MatDialogModule }  from '@angular/material/dialog';
 //Grillas
 import { MatGridListModule }  from '@angular/material/grid-list';
+//Toolbar
+import { MatToolbarModule }  from '@angular/material/toolbar';
+//
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatListModule } from '@angular/material/list'
+import { MatDividerModule } from '@angular/material/divider'
 
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -44,6 +50,10 @@ import { NavVarComponent } from './components/nav-var/nav-var.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ToastMsgService } from './services/toast-msg.service';
 import { ChatComponent } from './pages/chat/chat.component';
+import { FilterUserPipe } from './pipes/filter-user.pipe';
+import { UserTableComponent } from './components/user-table/user-table.component';
+import { ChatTableComponent } from './components/chat-table/chat-table.component';
+
 
 @NgModule({
   declarations: [
@@ -54,27 +64,34 @@ import { ChatComponent } from './pages/chat/chat.component';
     ErrorComponent,
     NavVarComponent,
     ChatComponent,
+    FilterUserPipe,
+    UserTableComponent,
+    ChatTableComponent,
 
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
+    MatAutocompleteModule,
     MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatDialogModule,
-    MatGridListModule,
     MatCardModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatTableModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    MatListModule,
+    MatDividerModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

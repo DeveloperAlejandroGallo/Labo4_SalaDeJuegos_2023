@@ -1,1 +1,65 @@
 <app-nav-var [inputUsuarioConectado]="usuarioConectado" ></app-nav-var>
+<div class="container">
+  <div class="chat-list mat-elevation-z5">
+    <div class="buscador">
+      <mat-form-field>
+        <input matInput placeholder="Buscar usuario..." [(ngModel)]="usuarioABuscar" >
+      </mat-form-field>
+      <app-user-table (usuarioSeleccionado)="recibirUsuario($event)" [nombreBuscado]="usuarioABuscar"></app-user-table>
+    </div>
+  </div>
+  <div class="messages mat-elevation-z5">
+    <div
+      class="messages-header"
+      *ngIf="mostrarNombre  else noChatSelected">
+      <img
+        [src]="
+        usuarioSeleccionado!.foto != ('' && undefined)
+            ? usuarioSeleccionado!.foto
+            : 'assets/images/image-placeholder.png'
+        "
+      />
+      <p mat-line class="chat-title">
+        <span class="chat-name">{{ usuarioSeleccionado!.nombre }}, {{usuarioSeleccionado!.apellido}}</span
+        >
+        <!-- <span class="chat-date">{{chat.lastMessageDate | dateDisplay}}</span> -->
+      </p>
+      <!-- <h2>{{ usuarioSeleccionado!.nombre }}, {{usuarioSeleccionado!.apellido}}</h2> -->
+    </div>
+    <ng-template #noChatSelected>
+      <h2>Mensajes </h2>
+    </ng-template>
+    <mat-divider></mat-divider>
+    <div class="chat-area">
+      <ng-container *ngIf="usuarioConectado  as usuarioActual">
+        <ng-container *ngIf="listadoMesajesAMostrar as mensajesDeOtroUsuario">
+          <div
+            class="chat-bubble-container"
+            [ngClass]="{ sender: chat.remitente.id === usuarioActual.id }"
+            *ngFor="let chat of mensajesDeOtroUsuario">
+            <div class="chat-bubble">
+              {{ chat.mensaje }}
+              <span class="chat-time">{{
+                chat.fechaYHoraString
+              }}</span>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div #endOfChat></div>
+    </div>
+    <div class="input-area">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Enter your message..."
+          [formControl]="mensajeControl"
+          (keydown.enter)="enviarMensaje()"
+        />
+        <button mat-icon-button matSuffix (click)="enviarMensaje()">
+          <mat-icon>send</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
