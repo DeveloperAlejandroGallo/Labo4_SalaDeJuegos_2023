@@ -36,8 +36,11 @@ export class LoginComponent implements OnInit{
       emailSignUp: new FormControl('', Validators.email),
       NombreSignUp: new FormControl('',Validators.pattern('^[a-zA-Z]+$')),
       ApellidoSignUp: new FormControl('',Validators.pattern('^[a-zA-Z]+$')),
+      usuarioSignUp: new FormControl('',Validators.pattern('^[a-zA-Z]+$')),
+      esAdminSignUp: new FormControl(''),
       passwordSignUp: new FormControl('',Validators.min(4)),
       passwordRepSignUp: new FormControl('',Validators.required),
+
     },[Validators.required]);
 
     //Me suscribo al iniciar a los usuarios.
@@ -52,6 +55,8 @@ export class LoginComponent implements OnInit{
     let nombre = this.nombreSignUp?.value;
     let apellido = this.apellidoSignUp?.value;
     let password = this.passwordSignUp?.value;
+    let usuario = this.usuarioSignUp?.value;
+    let esAdmin = this.esAdminSignUp?.value;
 
     let usrBD: Usuario = this.getUser(email);
     console.log(usrBD)
@@ -73,7 +78,9 @@ export class LoginComponent implements OnInit{
       apellido: apellido,
       clave: password,
       foto: "",
-      logueado: false
+      logueado: false,
+      usuario: usuario,
+      esAdmin: esAdmin
     }
 
     // localStorage.setItem('usuarioLogueado', JSON.stringify(this.user));
@@ -100,7 +107,9 @@ export class LoginComponent implements OnInit{
       apellido: "",
       clave: "",
       foto: "",
-      logueado: false
+      logueado: false,
+      usuario: "",
+      esAdmin: false
     }
 
     let usrBuscado = this.usrService.listadoUsuarios?.find(x=>x.email == email);
@@ -113,7 +122,9 @@ export class LoginComponent implements OnInit{
         apellido: usrBuscado.apellido,
         clave: usrBuscado.clave,
         foto: usrBuscado.foto,
-        logueado: this.auth.logueado()
+        logueado: usrBuscado.logueado,
+        usuario: usrBuscado.usuario,
+        esAdmin: usrBuscado.esAdmin
       }
     }
 
@@ -147,6 +158,12 @@ export class LoginComponent implements OnInit{
   }
   get apellidoSignUp(){
     return this.signUpForm.get('ApellidoSignUp');
+  }
+  get usuarioSignUp(){
+    return this.signUpForm.get('usuarioSignUp');
+  }
+  get esAdminSignUp(){
+    return this.signUpForm.get('esAdminSignUp');
   }
   get passwordSignUp() {
     return this.signUpForm.get('passwordSignUp');

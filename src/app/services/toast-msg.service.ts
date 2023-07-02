@@ -32,4 +32,12 @@ export class ToastMsgService {
       className: "warning",
     }).showToast();
   }
+
+  Exito(msg: string){
+    Toastify({
+      text: msg,
+      position: "center",
+      className: "success",
+    }).showToast();
+  }
 }

@@ -1,94 +1,136 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from '../models/user.interface';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User  } from "firebase/auth";
-import { ToastMsgService } from './toast-msg.service';
+import { getAuth, sendEmailVerification,createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User, onAuthStateChanged  } from "firebase/auth";
 import { UsuarioService } from './usuario.service';
-import { LogginLogService } from './loggin-log.service';
-import { Constantes } from '../models/constantes';
 import { Router } from '@angular/router';
-import { Auth, authState } from '@angular/fire/auth';
-
+import { Constantes } from '../models/constantes';
+import { Usuario } from '../models/user.interface';
+import { ToastMsgService } from './toast-msg.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  estaLogueado: boolean = false;
+
+  sesionActiva: boolean = false;
   redirectUrl?: string;
   public usuarioActual?: Usuario;
 
-  constructor(private message: ToastMsgService,
-              private usrService: UsuarioService,
-              private logLogginService: LogginLogService,
-              private router: Router,
-              private auth: Auth) { }
+  constructor(private usrService: UsuarioService,
+              private message: ToastMsgService,
+              private router: Router) { }
+
+
+
 
   public iniciarSesion(email:string, password: string) {
 
     let i: number = 0;
     const auth = getAuth();
 
-    currentUser$: authState(this.auth);
+    if(!this.usrService.existeUsuario(email)){
+      this.message.Info("El usuario no existe en la base. Por favor registrese.");
+      return;
+    }
+
+    this.usuarioActual = this.usrService.listadoUsuarios?.find(x => x.email == email)!;
+
 
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
 
-      this.usuarioActual = this.usrService.listadoUsuarios?.find(x => x.email == userCredential.user.email);
+        if(!userCredential.user.emailVerified){
+          this.message.Warning("Antes de intentar ingresar debe validar su email");
+          this.cerrarSesion();
+          return;
+        }
 
-      if(this.usuarioActual)
-      {
-        this.loguear(this.usuarioActual);
+
+        this.loguear(this.usuarioActual!);
+
+        // this.logSrv.registrarIngreso(this.usuarioActual!);
         this.router.navigate(['/home']);
-      }
+
 
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      this.message.Error(`Ocurrio un error al ingresar el usuario: ${email}. Error: ${errorCode} - ${errorMessage}`);
+      let msg: string="";
+      switch (error.code) {
+        case 'auth/invalid-email':
+          msg = 'Correo con formato incorrecto';
+          break;
+        case 'auth/wrong-password':
+          msg = 'Clave incorrecta';
+          break;
+        case 'auth/user-not-found':
+          msg = 'El usuario no existe.';
+          // this.register();
+          break;
+        default:
+          msg = error.message;
+      }
+      this.message.Error(`Usuario: ${email} - ${msg}`);
     });
   }
 
 
-  loguear(usr: Usuario) {
-    this.estaLogueado = true;
+  loguear(usr: any) {
+    this.sesionActiva = true;
     localStorage.setItem(Constantes.usuarioLocalStorage, JSON.stringify(usr));
     //Registro el ingreso:
-    this.logLogginService.nuevo(usr.email);
-
-
-    this.message.Info("Bienvenido " + usr.nombre);
+      this.message.Info("Bienvenido " + usr.nombre);
 
 
   }
 
-  public registrarCuenta(user: Usuario) {
-    console.log(user.email, user.clave);
+  public registrarCuenta(user: Usuario ) {
+
 
     const auth = getAuth();
 
     createUserWithEmailAndPassword(auth, user.email, user.clave)
     .then((userCredential) => {
-      this.message.Info(`Usuario ${user.email} registrado correctamente.`);
       //Lo guardo en la coleccion:
       this.usrService.nuevo(user);
-      this.loguear(user);
-      setTimeout(() => {
-        this.router.navigate(['/home']);
-      }, 1500);
+
+      sendEmailVerification(auth.currentUser!);
+      this.message.Exito(`Usuario ${user.email} registrado correctamente.`);
+      this.router.navigate(['/login']);
 
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      this.message.Error("Ocurrio un error al registrar el usuario: "+ errorCode+ " - "+ errorMessage);
+      let msg: string = "";
+      switch (error.code) {
+        case 'auth/weak-password':
+          msg = 'La clave debe poseer al menos 6 caracteres';
+          break;
+        case 'auth/email-already-in-use':
+          msg = 'Correo ya registrado';
+          break;
+        case 'auth/invalid-email':
+          msg = 'Correo con formato inv\u00E1lido';
+          break;
+        case 'auth/argument-error':
+          if (error.message == 'createUserWithEmailAndPassword failed: First argument "email" must be a valid string.')
+            msg = 'Correo con debe ser una cadena v\u00E1lida';
+          else
+            msg = 'La constrase\u00F1a debe ser una cadena v\u00E1lida';
+          break;
+        case 'auth/argument-error':
+          msg = 'Correo con debe ser una cadena v\u00E1lida';
+          break;
+        default:
+          msg = 'Error en registro';
+      }
+      this.message.Error(`Usuario: ${user.email} - ${msg}`);
       throw error;
     });
   }
 
-  public cerrarSesion(email:string) {
+
+
+  public cerrarSesion() {
 
     const auth = getAuth();
 
@@ -101,7 +143,7 @@ export class AuthService {
   }
 
   public currentUser() {
-    const auth = getAuth();
+
     const usr = localStorage.getItem(Constantes.usuarioLocalStorage);
 
     return usr ? JSON.parse(usr) : null;
@@ -110,32 +152,40 @@ export class AuthService {
   public logueado() {
     const auth = getAuth();
 
-    return (auth.currentUser != null);
+    return (auth.currentUser != null) && ((this.currentUser() as Usuario).email == auth.currentUser.email);
+
+
   }
 
-  public logInfo():Usuario{
-    let user: Usuario = {
-      id: "",
-      email: "",
-      nombre: "",
-      apellido: "",
-      clave: "",
-      foto: "",
-      logueado: false
-    }
+  public logInfo():Usuario | undefined{
+    let user: Usuario | undefined;
     const auth = getAuth();
     if(auth.currentUser){
       this.usuarioActual = this.usrService.listadoUsuarios?.find(x => x.email == auth.currentUser!.email);
       if(this.usuarioActual)
       {
         user = this.usuarioActual;
-        user.logueado = this.logueado();
       }
     }
-
-
     return user;
-
   }
 
+  traeUsuarioLogueado() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        this.usuarioActual = this.usrService.listadoUsuarios?.find(x => x.email == user.email);
+        this.sesionActiva = true;
+        // ...
+      } else {
+        // User is signed out
+        // ...
+
+        this.sesionActiva = false;
+      }
+    });
+  }
 }

@@ -19,7 +19,7 @@ export class NavVarComponent {
             private router: Router) {}
 
  onClickLogOut(){
-  this.auth.cerrarSesion(this.inputUsuarioConectado!.email!);
+  this.auth.cerrarSesion();
   this.inputUsuarioConectado = this.auth.logInfo();
   setTimeout(() => {
     this.router.navigate(['login']);

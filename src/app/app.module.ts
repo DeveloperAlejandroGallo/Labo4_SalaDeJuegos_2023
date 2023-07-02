@@ -53,6 +53,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { FilterUserPipe } from './pipes/filter-user.pipe';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { ChatTableComponent } from './components/chat-table/chat-table.component';
+import { AhorcadoComponent } from './pages/juegos/ahorcado/ahorcado.component';
+import { JuegoHomeComponent } from './pages/juegos/juego-home/juego-home.component';
 
 
 @NgModule({
@@ -67,6 +69,8 @@ import { ChatTableComponent } from './components/chat-table/chat-table.component
     FilterUserPipe,
     UserTableComponent,
     ChatTableComponent,
+    AhorcadoComponent,
+    JuegoHomeComponent,
 
   ],
   imports: [

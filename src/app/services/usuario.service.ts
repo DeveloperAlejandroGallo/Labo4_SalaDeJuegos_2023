@@ -17,6 +17,7 @@ export class UsuarioService {
 
   listadoUsuarios!: Array<Usuario>;
 
+
 //Genericos
   traer(){
     const coleccion = collection(this.firestore, this.colectionName);
@@ -62,6 +63,9 @@ export class UsuarioService {
       email: usuario.email,
       clave: usuario.clave,
       foto: usuario.foto,
+      logueado: false,
+      usuario: usuario.usuario,
+      esAdmin: usuario.esAdmin,
     });
   }
 
@@ -74,6 +78,14 @@ export class UsuarioService {
       email: usuario.email,
       clave: usuario.clave,
       foto: usuario.foto,
+      logueado: usuario.logueado,
+      usuario: usuario.usuario,
+      esAdmin: usuario.esAdmin,
     })
+  }
+
+  existeUsuario(email: string): boolean{
+    let usrBuscado = this.listadoUsuarios?.find(x=>x.email == email);
+    return usrBuscado != undefined ? true : false ;
   }
 }

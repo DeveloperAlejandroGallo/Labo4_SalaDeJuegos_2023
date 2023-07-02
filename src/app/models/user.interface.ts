@@ -7,6 +7,8 @@ export interface Usuario {
   clave: string;
   foto: string;
   logueado: boolean;
+  usuario: string;
+  esAdmin: boolean;
 }
 
 
