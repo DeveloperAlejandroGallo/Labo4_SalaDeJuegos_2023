@@ -1,0 +1,75 @@
+.titulo {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  font-size: 60px;
+  background-color: rgba(47, 47, 185, 0.274);
+  color: rgba(58, 23, 175);
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  padding-top: 40px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin: auto;
+  font-style: italic;
+  padding-bottom: 20px;
+}
+
+.fondo {
+  background-image: url('../../../../assets/FondoPasapalabra.jpg');
+  height: 100vh;
+  background-size: 100% 100%;
+  padding: 50px;
+  width: 100vw;
+}
+
+
+.circle-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.btn-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: #afac00;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.btn-circle:hover {
+  background-color: #333;
+}
+
+.seleccionada{
+  background-color: #d16c0d;
+}
+
+.incorrecta{
+  background-color: #d10d0d;
+}
+
+.correcta{
+  background-color: #0dd10d;
+}
+
+
+.input-puntaje {
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.479);
+  font-weight: bolder;
+  text-align: end;
+}

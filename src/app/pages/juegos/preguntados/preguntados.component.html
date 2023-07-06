@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="container">
+    <app-nav-var></app-nav-var>
+  </div>
+  <div class="container">
+    <div class="fondo container-lg">
+      <div class="container">
+        <div class="titulo">
+          <p>Preguntados</p>
+        </div>
+        <div>
+          <div class="tablero">
+            <div class="d-flex justify-content-end">
+              <div class="puntaje">
+                <form class="form-floating">
+                  <input type="text" class="form-control input-puntaje" id="floatingInputValue" value="{{puntaje}}" readonly>
+                  <label for="floatingInputValue">PUNTAJE</label>
+                </form>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <div class="puntaje">
+                <form class="form-floating">
+                  <input type="text" class="form-control input-cartas-restantes" id="floatingInputValue" value="{{preguntasRestantes}}" readonly>
+                  <label for="floatingInputValue">PREGUNTAS RESTANTES</label>
+                </form>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="respuestas-container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="imagen-categoria-container">
+                        <img class="imagen-categoria" src="{{imagen_categoria}}" alt="Imagen de Categoría" class="imagen-categoria" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-floating">
+                        <textarea class="form-control" id="floatingTextarea" style="text-align: center;" disabled>{{preguntaActual.pregunta}}</textarea>
+                        <label for="floatingTextarea">PREGUNTA</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="respuestas-container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button class="btn btn-respuesta" (click)="Responder(0)">{{preguntaActual.respuestas[0].respuesta}}</button>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="btn btn-respuesta" (click)="Responder(1)">{{preguntaActual.respuestas[1].respuesta}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="respuestas-container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button class="btn btn-respuesta" (click)="Responder(2)">{{preguntaActual.respuestas[2].respuesta}}</button>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="btn btn-respuesta" (click)="Responder(3)">{{preguntaActual.respuestas[3].respuesta}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

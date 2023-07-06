@@ -22,22 +22,33 @@ export class HttpService {
   }
 
 
-  getMazoDeCartas(): Mazo | any{
-    this.http.get(environment.nuevoMazoCartas).subscribe({
-      next: (mazo) => {
-        return mazo as Mazo;
-      },
-      error: (err) =>  console.error('Error al leer el mazo de cartas: ' + err),
+  getMazoDeCartas(): Promise<Mazo> {
+    return new Promise((resolve, reject) => {
+      this.http.get(environment.nuevoMazoCartas).subscribe({
+        next: (mazo) => {
+          resolve(mazo as Mazo);
+        },
+        error: (err) => {
+          console.error('Error al leer el mazo de cartas: ' + err);
+          reject(err);
+        },
+      });
     });
   }
 
-  getNuevaCartaDeMazo(mazo: Mazo): Carta | any{
-    this.http.get(environment.nuevaCarta.replace('<<deck_id>>',mazo.deck_id)).subscribe({
-      next: (carta) => {
-        return carta as Carta;
-      },
-      error: (err) =>  console.error('Error al leer la carta del mazo: ' + err),
-    });
 
-  }
+    getNuevaCartaDeMazo(mazoDeckId: string): Promise<Carta> {
+      return new Promise((resolve, reject) => {
+        this.http.get(environment.nuevaCarta.replace('<<deck_id>>', mazoDeckId)).subscribe({
+          next: (carta) => {
+            resolve(carta as Carta);
+          },
+          error: (err) => {
+            console.error('Error al leer la carta del mazo: ' + err);
+            reject(err);
+          },
+        });
+      });
+    }
+
 }

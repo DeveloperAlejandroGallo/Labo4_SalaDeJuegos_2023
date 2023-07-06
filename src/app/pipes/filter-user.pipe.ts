@@ -14,8 +14,8 @@ export class FilterUserPipe implements PipeTransform {
 
 
     listadoUsuarios = value.filter(usr =>
-      (usr.nombre.toLocaleLowerCase().indexOf(filtro.toLocaleLowerCase()) > -1 ||
-      usr.apellido.toLocaleLowerCase().indexOf(filtro.toLocaleLowerCase()) > -1) &&
+      (usr.nombre.toLocaleLowerCase().includes(filtro.toLocaleLowerCase()) ||
+      usr.apellido.toLocaleLowerCase().includes(filtro.toLocaleLowerCase()) ) &&
       (usr.id != sinUsuarioId )
       )
 

@@ -1,8 +1,9 @@
 .fondo {
   background-image: url('../../../../assets/FondoAhorcado.jpg');
-  height: 600px;
+  height: 100%;
   background-size: 100% 100%;
   padding: 50px;
+  width: 100%;
 }
 
 .tablero {
@@ -26,7 +27,8 @@ table {
   text-align: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: bolder;
-  margin-top: 60px;
+  padding-top: 40px;
+  margin-top: 100px;
   margin-bottom: 100px;
   margin: auto;
   font-style: italic;
@@ -39,7 +41,7 @@ table {
   font-size: 20px;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding: 10px;
+  padding-left: 10px;
 }
 
 .mensaje {

@@ -46,15 +46,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { ErrorComponent } from './pages/error/error.component';
-import { NavVarComponent } from './components/nav-var/nav-var.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ToastMsgService } from './services/toast-msg.service';
 import { ChatComponent } from './pages/chat/chat.component';
 import { FilterUserPipe } from './pipes/filter-user.pipe';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { ChatTableComponent } from './components/chat-table/chat-table.component';
-import { AhorcadoComponent } from './pages/juegos/ahorcado/ahorcado.component';
-import { JuegoHomeComponent } from './pages/juegos/juego-home/juego-home.component';
+import { ListadosComponent } from './pages/listados/listados.component';
+import { EncuestaComponent } from './pages/encuesta/encuesta.component';
+import { AdminEncuestaComponent } from './pages/admin/admin-encuesta/admin-encuesta.component';
+import { NavVarModule } from './components/nav-var/nav-var.module';
+import { FilterPartidasPipe } from './pipes/filter-partidas.pipe';
+import { DateIsoToDatePipe } from './pipes/date-iso-to-date.pipe';
+import { EncuestaResponderComponent } from './pages/encuestas/encuesta-responder/encuesta-responder.component';
+import { EncuestaVerComponent } from './pages/encuestas/encuesta-ver/encuesta-ver.component';
+
 
 
 @NgModule({
@@ -64,16 +70,22 @@ import { JuegoHomeComponent } from './pages/juegos/juego-home/juego-home.compone
     HomeComponent,
     QuienSoyComponent,
     ErrorComponent,
-    NavVarComponent,
     ChatComponent,
     FilterUserPipe,
     UserTableComponent,
     ChatTableComponent,
-    AhorcadoComponent,
-    JuegoHomeComponent,
+    ListadosComponent,
+    EncuestaComponent,
+    AdminEncuestaComponent,
+    FilterPartidasPipe,
+    DateIsoToDatePipe,
+    EncuestaResponderComponent,
+    EncuestaVerComponent,
+
 
   ],
   imports: [
+    NavVarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,

@@ -1,16 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
 
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
 
 .error {
   background: linear-gradient(to right, #b08100, #ce3e3e)
@@ -21,18 +14,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .warning {
-  background: linear-gradient(to right, #e3e702, #d69200)
+  background: linear-gradient(to right, #a0a300, #d69200)
 }
 
 .success {
-  background: linear-gradient(to right, #0db107, #fffb00)
+  background: linear-gradient(to right, #0bb405, #63ad01fb)
 }
 
-// body {
-//   background-image: url('assets/abstract-glowing-tunnel.jpg');
-//   background-repeat: no-repeat;
-//   background-attachment: fixed;
-//   background-size: cover;
-//   color: white;
-//   margin-top: 2px;
-// }

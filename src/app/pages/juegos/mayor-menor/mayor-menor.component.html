@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="container">
+    <app-nav-var></app-nav-var>
+  </div>
+  <div class="container">
+    <div class="fondo container-lg">
+      <div class="container">
+        <div class="titulo">
+          <p>Mayor - Menor</p>
+        </div>
+        <div >
+          <div class="tablero" style="background-color: #006400;">
+            <div class="d-flex justify-content-end">
+              <div class="puntaje">
+                <form class="form-floating">
+                  <input type="text" class="form-control input-puntaje" id="floatingInputValue" value="{{puntaje}}" readonly>
+                  <label for="floatingInputValue">PUNTAJE</label>
+                </form>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <div class="puntaje">
+                <form class="form-floating">
+                  <input type="text" class="form-control input-cartas-restantes" id="floatingInputValue" value="{{cartasRestantes}}" readonly>
+                  <label for="floatingInputValue">CARTAS RESTANTES</label>
+                </form>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="carta-izquierda carta">
+                <img [src]="imagenCarta" alt="" class="img-fluid" />
+              </div>
+              <div class="cartas-derecha carta">
+                <img src="../../../../assets/MayorMenor/mazo.png" alt="Mazo de Cartas" class="img-fluid" />
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="botones">
+                <button id="botonMayor" class="btn btn-lg btn-3d" (click)="Jugada('<')"> &lt; </button>
+                <button id="botonIgual" class="btn btn-lg btn-3d" (click)="Jugada('=')"> = </button>
+                <button id="botonMenor" class="btn btn-lg btn-3d" (click)="Jugada('>')"> &gt; </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

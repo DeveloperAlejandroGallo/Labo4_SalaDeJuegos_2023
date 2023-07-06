@@ -1,0 +1,118 @@
+.fondo {
+  background-image: url('../../../../assets/FondoMemotest.png');
+  height: 100%;
+  background-size: 100% 100%;
+  padding: 50px;
+  width: 100%;
+}
+
+// .tablero {
+//   display: flex;
+//   /* align-items: center; */
+//   justify-content: center;
+// }
+
+table {
+  margin-left: 50px;
+  padding-top: 100px;
+}
+
+.titulo {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  font-size: 60px;
+  background-color: rgba(47, 47, 185, 0.274);
+  color: rgba(58, 23, 175);
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  padding-top: 40px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin: auto;
+  font-style: italic;
+  padding-bottom: 20px;
+}
+
+.letra {
+  background-color: white;
+  color: blue;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-left: 10px;
+}
+
+.tablero {
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.puntaje {
+  position: relative;
+}
+
+.input-puntaje {
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.479);
+  font-weight: bolder;
+  text-align: end;
+}
+
+.input-cartas-restantes {
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.479);
+  font-weight: bolder;
+  text-align: end;
+  color: blue;
+}
+
+.carta-izquierda {
+  margin-right: 10px; /* Espacio entre la carta y el mazo */
+}
+
+.cartas-derecha {
+  margin-left: 10px; /* Espacio entre la carta y el mazo */
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Espacio superior */
+}
+
+.btn-3d {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  color: #000;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-3d:hover {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d:active {
+  background-color: #007b8a;
+  border-color: #007b8a;
+  color: #fff;
+  transform: translateY(1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carta {
+  width: 150px; /* Ajusta el valor según tus necesidades */
+  height: auto; /* Mantiene la proporción de aspecto */
+}

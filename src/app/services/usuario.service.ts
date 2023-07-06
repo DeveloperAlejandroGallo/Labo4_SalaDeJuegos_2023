@@ -3,6 +3,7 @@ import { addDoc, collection, collectionChanges, collectionData, CollectionRefere
 import { Usuario } from '../models/user.interface';
 import { Observable, switchMap } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,19 +37,15 @@ export class UsuarioService {
     deleteDoc(documento);
   }
 
+
+
   get allUsers$(): Observable<Usuario[]>{
     const coleccion = collection(this.firestore, this.colectionName);
     const queryAll = query(coleccion);
     return collectionData(queryAll) as Observable<Usuario[]>;
   }
 
-  // get currentUserProfile$(): Observable<UserProfile | null>{
-  //   return this.auth.currentUser$.pipe(
-  //     switchMap((user)=>{
-  //       if(!user?.uid)
-  //     })
-  //   );
-  // }
+
 //Usuario
   nuevo(usuario: Usuario) {
 

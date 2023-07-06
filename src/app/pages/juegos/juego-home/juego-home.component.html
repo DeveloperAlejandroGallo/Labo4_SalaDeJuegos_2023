@@ -1,92 +1,122 @@
-<app-nav-var [inputUsuarioConectado]="usuarioConectado" ></app-nav-var>
 <div class="container">
-  <div class="row">
-    <!-- 75% izquierdo -->
-    <div class="col-md-9">
+  <div class="container">
+    <app-nav-var></app-nav-var>
+  </div>
+  <div class="container container-main">
+    <div class="container-juego">
       <div class="row">
-        <div class="col-md-4 mb-4">
-          <a class="card text-center" routerLink="/ahorcado">
-            <img src="../../../assets/Ahorcado/09.png" class="card-img-top" alt="Imagen Ahorcado">
-            <div class="card-body">
-              <h5 class="card-title">Ahorcado</h5>
+        <!-- 75% izquierdo -->
+        <div class="col-md-9 border-right">
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <a class="card text-center" routerLink="/juegos/ahorcado">
+                <img
+                  src="../../../assets/Ahorcado/09.png"
+                  class="card-img-top img-fluid"
+                  alt="Imagen Ahorcado"
+                />
+              </a>
+              <div class="card-body text-center">
+                <h2 class="card-title">Ahorcado</h2>
+              </div>
             </div>
-          </a>
-        </div>
-        <div class="col-md-4 mb-4">
-          <a class="card text-center" routerLink="/mayor-menor">
-            <img src="../../../assets/MayorMenor/IconoMayorMenor.png" class="card-img-top" alt="Imagen Mayor y Menor">
-            <div class="card-body">
-              <h5 class="card-title">Mayor y Menor</h5>
+            <div class="col-md-4 mb-4">
+              <a class="card text-center" routerLink="/juegos/mayor-menor">
+                <img
+                  src="../../../assets/MayorMenor/IconoMayorMenor.png"
+                  class="card-img-top img-fluid"
+                  alt="Imagen Mayor y Menor"
+                />
+              </a>
+              <div class="card-body text-center">
+                <h2 class="card-title">Mayor y Menor</h2>
+              </div>
             </div>
-          </a>
-        </div>
-        <div class="col-md-4 mb-4">
-          <a class="card text-center" routerLink="/preguntados">
-            <img src="../../../assets/Preguntados/PreguntadosBoton.png" class="card-img-top" alt="Imagen Preguntados">
-            <div class="card-body">
-              <h5 class="card-title">Preguntados</h5>
+            <div class="col-md-4 mb-4">
+              <a class="card text-center" routerLink="/juegos/preguntados">
+                <img
+                  src="../../../assets/Preguntados/PreguntadosBoton.png"
+                  class="card-img-top img-fluid"
+                  alt="Imagen Preguntados"
+                />
+              </a>
+              <div class="card-body text-center">
+                <h2 class="card-title">Preguntados</h2>
+              </div>
             </div>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-4">
-          <a class="card text-center" routerLink="/batalla-naval">
-            <img src="../../../assets/Batalla Naval/FondoBotonBN.png" class="card-img-top" alt="Imagen Batalla Naval">
-            <div class="card-body">
-              <h5 class="card-title">Batalla Naval</h5>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <a class="card text-center" routerLink="/juegos/pasapalabras">
+                <img
+                  src="../../../../assets/FondoPasapalabra.jpg"
+                  class="card-img-top img-fluid"
+                  alt="Imagen Batalla Naval"
+                />
+              </a>
+              <div class="card-body text-center">
+                <h2 class="card-title">Pasapalabra</h2>
+              </div>
             </div>
-          </a>
-        </div>
-        <div class="col-md-6 mb-4">
-          <a class="card text-center" routerLink="/listados">
-            <img src="../../../assets/listado.jpg" class="card-img-top" alt="Imagen Listados">
-            <div class="card-body">
-              <h5 class="card-title">Listados</h5>
+            <div class="col-md-4 mb-4">
+              <a class="card text-center" routerLink="/listados">
+                <img
+                  src="../../../assets/listado.jpg"
+                  class="card-img-top img-fluid"
+                  alt="Imagen Listados"
+                />
+              </a>
+              <div class="card-body text-center">
+                <h2 class="card-title">Listados</h2>
+              </div>
             </div>
-          </a>
+            <div class="col-md-4 mb-4">
+              <a class="card text-center" routerLink="/encuesta">
+                <img
+                  src="../../../../assets/Listado.png"
+                  class="card-img-top img-fluid"
+                  alt="Imagen Encuesta"
+                />
+              </a>
+              <div class="card-body text-center">
+                <h2 class="card-title">Encuesta</h2>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- 25% derecho -->
-    <div class="col-md-3">
-      <div class="text-center">
-        <img [src]="usuarioConectado!.foto" alt="Imagen de Usuario" class="rounded-circle avatar mb-2">
-        <h5 class="mb-0">{{usuarioConectado!.usuario}}</h5>
+        <!-- 25% derecho -->
+        <div class="col-md-3">
+          <div class="text-center bg-transparent">
+            <img
+              [src]="usuarioConectado!.foto"
+              alt="Imagen de Usuario"
+              class="rounded-circle avatar mb-2"
+              style="width: 100px; height: 100px"
+            />
+            <h5 class="mb-0">{{ usuarioConectado!.usuario }}</h5>
+          </div>
+          <div class="text-center" style="color: white">
+            <h2>Jugadas</h2>
+          </div>
+          <table class="table table-bordered mt-4 bg-light">
+            <thead>
+              <tr class="text-bg-info">
+                <th>Juego</th>
+                <th>Partidas</th>
+                <th>Puntaje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let juego of juegos" class="text-bg-dark">
+                <td class="text-center"><b>{{juego.nombre}}</b></td>
+                <td class="text-center"><b>{{juego.cantidadPartidas}}</b></td>
+                <td class="text-center"><b>{{juego.puntajeTotal}}</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      <table class="table table-bordered mt-4">
-        <thead>
-          <tr>
-            <th>Juego</th>
-            <th>Partidas Jugadas</th>
-            <th>Puntaje</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Ahorcado</td>
-            <td>10</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>Mayor y Menor</td>
-            <td>5</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Preguntados</td>
-            <td>8</td>
-            <td>80</td>
-          </tr>
-          <tr>
-            <td>Batalla Naval</td>
-            <td>15</td>
-            <td>150</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>

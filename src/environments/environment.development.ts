@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'labo4-saladejuegos-2023.firebaseapp.com',
     messagingSenderId: '266305228203',
   },
-  palabrasAlAzar: 'https://clientes.api.greenborn.com.ar/public-random-word',
+  palabrasAlAzar: 'https://api.generadordni.es/v2/text/words?results=1&words=1&language=es',
   nuevoMazoCartas: 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1',
   nuevaCarta: 'https://deckofcardsapi.com/api/deck/<<deck_id>>/draw/?count=1',
 };

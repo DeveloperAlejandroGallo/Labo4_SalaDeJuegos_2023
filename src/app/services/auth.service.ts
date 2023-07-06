@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { Constantes } from '../models/constantes';
 import { Usuario } from '../models/user.interface';
 import { ToastMsgService } from './toast-msg.service';
+import { Auth, authState } from '@angular/fire/auth';
+import { Observable, of, switchMap } from 'rxjs';
+import { Firestore, doc } from 'firebase/firestore';
+import { docData } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -16,10 +20,12 @@ export class AuthService {
   redirectUrl?: string;
   public usuarioActual?: Usuario;
 
+  currentUser$ = authState(this.auth);
+
   constructor(private usrService: UsuarioService,
               private message: ToastMsgService,
-              private router: Router) { }
-
+              private router: Router,
+              private auth: Auth) { }
 
 
 
@@ -40,17 +46,17 @@ export class AuthService {
     .then((userCredential) => {
       // Signed in
 
-        if(!userCredential.user.emailVerified){
-          this.message.Warning("Antes de intentar ingresar debe validar su email");
-          this.cerrarSesion();
-          return;
-        }
+        // if(!userCredential.user.emailVerified){
+        //   this.message.Warning("Antes de intentar ingresar debe validar su email");
+        //   this.cerrarSesion();
+        //   return;
+        // }
 
 
         this.loguear(this.usuarioActual!);
 
         // this.logSrv.registrarIngreso(this.usuarioActual!);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/juegos/home']);
 
 
     })
@@ -94,7 +100,7 @@ export class AuthService {
       //Lo guardo en la coleccion:
       this.usrService.nuevo(user);
 
-      sendEmailVerification(auth.currentUser!);
+      // sendEmailVerification(auth.currentUser!);
       this.message.Exito(`Usuario ${user.email} registrado correctamente.`);
       this.router.navigate(['/login']);
 

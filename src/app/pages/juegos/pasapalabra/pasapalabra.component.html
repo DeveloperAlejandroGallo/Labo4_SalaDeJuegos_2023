@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="container">
+    <app-nav-var></app-nav-var>
+  </div>
+  <div class="container">
+    <div class="fondo container-lg">
+      <div class="container">
+        <div class="titulo">
+          <p>Pasapalabra</p>
+        </div>
+        <div >
+          <div class="tablero">
+            <div class="d-flex justify-content-end">
+              <div class="puntaje">
+                <form class="form-floating">
+                  <input type="text" class="form-control input-puntaje" style="text-align: end;" id="floatingInputValue" value="{{tiempoRestante}}" readonly>
+                  <label for="floatingInputValue">TIEMPO</label>
+                </form>
+              </div>
+            </div>
+            <!-- A partir de aca el tablero de pasapalabra -->
+            <div class="circle-container">
+              <button id="letra-A" class="btn-circle" (click)="JugarLetra('A')">A</button>
+              <button id="letra-B" class="btn-circle" (click)="JugarLetra('B')">B</button>
+              <button id="letra-C" class="btn-circle" (click)="JugarLetra('C')">C</button>
+              <button id="letra-D" class="btn-circle" (click)="JugarLetra('D')">D</button>
+              <button id="letra-E" class="btn-circle" (click)="JugarLetra('E')">E</button>
+              <button id="letra-F" class="btn-circle" (click)="JugarLetra('F')">F</button>
+              <button id="letra-G" class="btn-circle" (click)="JugarLetra('G')">G</button>
+              <button id="letra-H" class="btn-circle" (click)="JugarLetra('H')">H</button>
+              <button id="letra-I" class="btn-circle" (click)="JugarLetra('I')">I</button>
+              <button id="letra-J" class="btn-circle" (click)="JugarLetra('J')">J</button>
+              <button id="letra-L" class="btn-circle" (click)="JugarLetra('L')">L</button>
+              <button id="letra-M" class="btn-circle" (click)="JugarLetra('M')">M</button>
+              <button id="letra-N" class="btn-circle" (click)="JugarLetra('N')">N</button>
+              <button id="letra-Ñ" class="btn-circle" (click)="JugarLetra('Ñ')">Ñ</button>
+              <button id="letra-O" class="btn-circle" (click)="JugarLetra('O')">O</button>
+              <button id="letra-P" class="btn-circle" (click)="JugarLetra('P')">P</button>
+              <button id="letra-Q" class="btn-circle" (click)="JugarLetra('Q')">Q</button>
+              <button id="letra-R" class="btn-circle" (click)="JugarLetra('R')">R</button>
+              <button id="letra-S" class="btn-circle" (click)="JugarLetra('S')">S</button>
+              <button id="letra-T" class="btn-circle" (click)="JugarLetra('T')">T</button>
+              <button id="letra-U" class="btn-circle" (click)="JugarLetra('U')">U</button>
+              <button id="letra-V" class="btn-circle" (click)="JugarLetra('V')">V</button>
+              <button id="letra-X" class="btn-circle" (click)="JugarLetra('X')">X</button>
+              <button id="letra-Y" class="btn-circle" (click)="JugarLetra('Y')">Y</button>
+              <button id="letra-Z" class="btn-circle" (click)="JugarLetra('Z')">Z</button>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating">
+                  <textarea class="form-control" id="floatingTextareaP" style="text-align: center;" disabled>{{pregunta}}</textarea>
+                  <label for="floatingTextareaP">PREGUNTA</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating">
+                  <textarea class="form-control" id="floatingTextareaR" style="text-align: center;" [(ngModel)]="respuesta" (keydown)="capturarEnter($event)"></textarea>
+                  <label for="floatingTextareaR">RESPUESTA</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 d-flex justify-content-center">
+                <button id="pasapalabra" type="button" class="btn btn-warning" (click)="Pasapalabra()">PASAPALABRA</button>
+                <button id="responder" type="button" class="btn btn-success" (click)="Responder()">RESPONDER</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

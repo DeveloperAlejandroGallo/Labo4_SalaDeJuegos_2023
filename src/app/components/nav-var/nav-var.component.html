@@ -1,35 +1,73 @@
-<!-- <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid" *ngIf="inputUsuarioConectado!.logueado">
-    <a class="navbar-brand" href="#" style="color: white">
-      <img src="../../../assets/LogueadoImg.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-      {{inputUsuarioConectado!.nombre}}
-    </a>
-  </div>
-  <form class="container-fluid justify-content-end">
-    <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/home"  class="btn btn-outline-success" type="button" >Home</button>
-    <button  *ngIf="!inputUsuarioConectado!.logueado" routerLink="/login" class="btn btn-outline-info" type="button" >Login/Signup</button>
-
-    <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/chat" class="btn btn-outline-warning" type="button">Chat</button>
-    <button routerLink="/quien-soy" class="btn btn-outline-light" type="button" >Quien Soy</button>
-    <button *ngIf="inputUsuarioConectado!.logueado" class="btn btn-outline-danger" type="button" (click)="onClickLogOut()">LogOut</button>
-  </form>
-</nav> -->
-
-<mat-toolbar color="primary">
-  <div>
-    <div *ngIf="inputUsuarioConectado!.nombre == ''; else elseBlock">Sala de Juegos</div>
-    <ng-template #elseBlock>
-      <img src="../../../assets/LogueadoImg.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-      {{inputUsuarioConectado!.nombre}} {{inputUsuarioConectado!.apellido}}
-    </ng-template>
-  </div>
-
-  <div class="botones">
-    <button routerLink="/quien-soy" class="btn btn-outline-light" type="button" >Quien Soy</button>
-    <button *ngIf="inputUsuarioConectado!.logueado" routerLink="/chat" class="btn btn-outline-warning" type="button">Chat</button>
-    <button *ngIf="!inputUsuarioConectado!.logueado" mat-button routerLink="/login"><mat-icon>login</mat-icon>Login</button>
-    <button *ngIf="inputUsuarioConectado!.logueado" mat-button (click)="onClickLogOut()">
-        <mat-icon>logout</mat-icon>LogOut
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/juegos/home" *ngIf="usuarioConectado" (click)="irAHome()">
+        <img
+          [src]="usuarioConectado!.foto"
+          width="40"
+          height="40"
+          loading="lazy"
+          class="d-inline-block align-top rounded-circle"
+          alt="Home"
+        />
+        {{ usuarioConectado.nombre }}, {{ usuarioConectado.apellido }}
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarsExample10"
+        aria-controls="navbarsExample10"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
       </button>
-  </div>
-</mat-toolbar>
+
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarsExample10"
+      >
+        <div *ngIf="usuarioConectado; else loginBlock">
+          <ul class="navbar-nav">
+            <li class="nav-item" *ngIf="usuarioConectado.esAdmin">
+              <a class="nav-link" routerLink="/encuesta-ver">
+                <i class="fa-solid fa-user"></i> Ver Encuestas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/quien-soy">
+                <i class="fa-solid fa-user"></i> Quien Soy
+              </a>
+            </li>
+            <li *ngIf="usuarioConectado?.esAdmin" class="nav-item">
+              <a class="nav-link" routerLink="/Encuestas">
+                <i class="fas fa-poll"></i> Encuestas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/chat">
+                <i class="fas fa-comments"></i> Chat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="cerrarSesion()">
+                <i class="fa-solid fa-sign-out-alt"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #loginBlock>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">
+                <i class="fa-solid fa-lock"></i> Login
+              </a>
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+    </div>
+  </nav>
+</div>

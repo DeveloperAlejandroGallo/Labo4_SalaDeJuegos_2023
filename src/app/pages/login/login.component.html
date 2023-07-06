@@ -2,64 +2,31 @@
   <div class="container">
     <div class="login-wrap">
       <div class="login-html">
-        <input
-          id="tab-1"
-          type="radio"
-          name="tab"
-          class="sign-in"
-          checked
-        /><label for="tab-1" class="tab">Sign In</label>
-        <input id="tab-2" type="radio" name="tab" class="sign-up" /><label
-          for="tab-2"
-          class="tab"
-          >Sign Up</label
-        >
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked />
+        <label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up" />
+        <label for="tab-2" class="tab">Sign Up</label>
         <div class="login-form">
           <div class="sign-in-htm">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
               <div class="group">
                 <label for="emailLogin" class="label">Correo Electrónico</label>
-                <input
-                  id="emailLogin"
-                  type="email"
-                  class="input"
-                  formControlName="emailLogin"
-                />
+                <input id="emailLogin" type="email" class="input" formControlName="emailLogin" />
               </div>
               <div class="group">
                 <label for="passwordLogin" class="label">Contraseña</label>
-                <input
-                  id="passwordLogin"
-                  type="password"
-                  class="input"
-                  data-type="password"
-                  formControlName="passwordLogin"
-                />
+                <input id="passwordLogin" type="password" class="input" data-type="password" formControlName="passwordLogin" />
               </div>
               <div class="group">
                 <input id="check" type="checkbox" class="check" checked />
-                <label for="check"
-                  ><span class="icon"></span> Mantenerme Logueado</label
-                >
+                <label for="check"><span class="icon"></span> Mantenerme Logueado</label>
               </div>
               <div class="group">
                 <input type="submit" class="button" value="Ingresar" />
               </div>
               <div class="group text-center">
-                <input
-                  class="btn btn-info"
-                  type="button"
-                  style="margin: 1px"
-                  value="Coco"
-                  (click)="ingresoAutomatico('Coco')"
-                />
-                <input
-                  class="btn btn-info"
-                  type="button"
-                  style="margin: 1px"
-                  value="Ale"
-                  (click)="ingresoAutomatico('Ale')"
-                />
+                <input class="btn btn-info" type="button" style="margin: 1px" value="Coco" (click)="ingresoAutomatico('Coco')" />
+                <input class="btn btn-info" type="button" style="margin: 1px" value="Ale" (click)="ingresoAutomatico('Ale')" />
               </div>
               <div class="hr"></div>
               <div class="foot-lnk">
@@ -70,94 +37,51 @@
           <div class="sign-up-htm">
             <form [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()">
               <div class="group">
-                <label for="emailSignUp" class="label"
-                  >Correo Electrónico</label
-                >
-                <input
-                  type="email"
-                  id="emailSignUp"
-                  type="text"
-                  class="input"
-                  formControlName="emailSignUp"
-                />
+                <label for="emailSignUp" class="label">Correo Electrónico</label>
+                <input type="email" id="emailSignUp" class="input" formControlName="emailSignUp" />
                 <ng-container *ngIf="emailSignUp?.hasError('emailSignUp')">
                   <small class="text-danger">Formato Inválido</small>
                 </ng-container>
               </div>
               <div class="group">
                 <label for="NombreSignUp" class="label">Nombre</label>
-                <input
-                  id="NombreSignUp"
-                  type="text"
-                  class="input"
-                  formControlName="NombreSignUp"
-                />
+                <input id="NombreSignUp" type="text" class="input" formControlName="NombreSignUp" />
                 <ng-container *ngIf="nombreSignUp?.hasError('NombreSignUp')">
                   <small class="text-danger">El nombre es Requerido</small>
                 </ng-container>
               </div>
               <div class="group">
                 <label for="ApellidoSignUp" class="label">Apellido</label>
-                <input
-                  id="ApellidoSignUp"
-                  type="text"
-                  class="input"
-                  formControlName="ApellidoSignUp"
-                />
-                <ng-container
-                  *ngIf="apellidoSignUp?.hasError('ApellidoSignUp')"
-                >
+                <input id="ApellidoSignUp" type="text" class="input" formControlName="ApellidoSignUp" />
+                <ng-container *ngIf="apellidoSignUp?.hasError('ApellidoSignUp')">
                   <small class="text-danger">El apellido es Requerido</small>
                 </ng-container>
               </div>
               <div class="group">
                 <label for="usuarioSignUp" class="label">usuario</label>
-                <input
-                  id="usuarioSignUp"
-                  type="text"
-                  class="input"
-                  formControlName="usuarioSignUp"
-                />
-                <ng-container
-                  *ngIf="usuarioSignUp?.hasError('usuarioSignUp')"
-                >
+                <input id="usuarioSignUp" type="text" class="input" formControlName="usuarioSignUp" />
+                <ng-container *ngIf="usuarioSignUp?.hasError('usuarioSignUp')">
                   <small class="text-danger">El usuario es Requerido</small>
                 </ng-container>
               </div>
               <div class="group">
                 <label for="passwordSignUp" class="label">Contraseña</label>
-                <input
-                  id="passwordSignUp"
-                  type="password"
-                  class="input"
-                  data-type="password"
-                  formControlName="passwordSignUp"
-                />
+                <input id="passwordSignUp" type="password" class="input" data-type="password" formControlName="passwordSignUp" />
                 <ng-container *ngIf="emailSignUp?.hasError('min')">
                   <small class="text-danger">La clave es Requerida</small>
                 </ng-container>
               </div>
               <div class="group">
-                <label for="passwordRepSignUp" class="label"
-                  >Repetir Contraseña</label
-                >
-                <input
-                  id="passwordRepSignUp"
-                  type="password"
-                  class="input"
-                  data-type="password"
-                  formControlName="passwordRepSignUp"
-                />
-                <ng-container
-                  *ngIf="emailSignUp?.hasError('passwordRepSignUp')"
-                >
+                <label for="passwordRepSignUp" class="label">Repetir Contraseña</label>
+                <input id="passwordRepSignUp" type="password" class="input" data-type="password" formControlName="passwordRepSignUp" />
+                <ng-container *ngIf="emailSignUp?.hasError('passwordRepSignUp')">
                   <small class="text-danger">Repita la clave</small>
                 </ng-container>
               </div>
               <!-- checkbox es Admin con form -->
               <div class="group">
-                <input id="esAdminSignUp" type="checkbox" class="check" formControlName="esAdminSignUp"/>
                 <label for="esAdminSignUp"><span class="icon"></span> Es Administrador</label>
+                <input id="esAdminSignUp" type="checkbox" class="check" formControlName="esAdminSignUp" />
               </div>
               <div class="group">
                 <input type="submit" class="button" value="Registrarse" />
@@ -165,7 +89,7 @@
             </form>
             <div class="hr"></div>
             <div class="foot-lnk">
-              <label for="tab-1">Ya esta registrad@?</label>
+              <label for="tab-1">Ya está registrado?</label>
             </div>
           </div>
         </div>

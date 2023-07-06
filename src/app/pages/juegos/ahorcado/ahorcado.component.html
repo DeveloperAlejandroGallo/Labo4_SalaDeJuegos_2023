@@ -1,34 +1,57 @@
-<div class="fondo container-lg">
+<div class="container">
   <div class="container">
-      <div *ngIf='juegoActivo'>
-          <div class="titulo">
-              <p>Ahorcado</p>
-          </div>
+    <app-nav-var></app-nav-var>
+  </div>
+  <div class="container">
+    <div class="fondo container-lg">
+      <div class="container">
+        <div class="titulo">
+          <p>Ahorcado</p>
+        </div>
+        <div *ngIf="juegoActivo">
           <div class="tablero">
-              <div class="img img0" id="ahorcado"></div>
-              <table>
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="img img0" id="ahorcado"></div>
+              </div>
+              <div class="col">
+                <table>
                   <tr>
-                      <td class="letra" *ngFor='let letra of nuevoJuego.palabraConGuiones'>{{letra}}</td>
+                    <td
+                      class="letra"
+                      *ngFor="let letra of nuevoJuego.palabraConGuiones"
+                    >
+                      {{ letra }}
+                    </td>
                   </tr>
-              </table>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center" style="padding-top: 10px;">
+            <div class="shadow-lg p-1 bg-light rounded">
+              <span style="font-size: 1rem;">Errores Restantes {{8 - errores}}</span>
+            </div>
           </div>
           <div class="letras">
-              <div class="row">
-                  <div class="col text-center">
-                      <button *ngFor="let letra of nuevoJuego.letras" class="btn btn-primary" (click)='letraClick(letra)'> {{ letra }} </button>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="mensaje">
-          <div class="row">
+            <div class="row">
               <div class="col text-center">
-                  {{mensaje}}
+                <button
+                  *ngFor="let letra of nuevoJuego.letras"
+                  class="btn btn-primary"
+                  (click)="letraClick(letra)"
+                >
+                  {{ letra }}
+                </button>
               </div>
+            </div>
           </div>
+        </div>
+
+        <div class="container botonera">
+          <button id="button1 " (click)="nuevo()">Nuevo Juego</button>
+        </div>
       </div>
-      <div class="container botonera ">
-          <button id="button1 " (click)="nuevo() ">Nuevo Juego</button>
-      </div>
+    </div>
   </div>
 </div>

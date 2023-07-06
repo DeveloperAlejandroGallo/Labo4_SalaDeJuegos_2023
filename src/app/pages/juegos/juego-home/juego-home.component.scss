@@ -1,0 +1,29 @@
+.container-juego {
+  margin-top: 65px;
+  display: flex;
+
+  background-image: url("../../../../assets/abstract-glowing-tunnel.jpg");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+
+  background-attachment: fixed;
+  color: white;
+
+  padding: 10px 100px 0 100px;
+  margin-left: 25px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.img-cell {
+  height: 50px; /* Ajusta el valor según tus necesidades */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-main {
+  margin: 0;
+  padding: 0;
+}
