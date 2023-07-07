@@ -42,6 +42,14 @@ export class NavVarComponent {
     setTimeout(() => {
       this.router.navigate(['login']);
     }, 1000);
+
+
   }
+
+
+  irARuta(ruta: string){
+    this.router.navigate([ruta]);
+  }
+
 
 }

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { IsloggedGuard } from './guard/islogged.guard';
 import { ChatComponent } from './pages/chat/chat.component';
-import { JuegoHomeComponent } from './pages/juegos/juego-home/juego-home.component';
 import { ListadosComponent } from './pages/listados/listados.component';
-import { EncuestaComponent } from './pages/encuesta/encuesta.component';
 import { AdminEncuestaComponent } from './pages/admin/admin-encuesta/admin-encuesta.component';
+import { EncuestaResponderComponent } from './pages/encuestas/encuesta-responder/encuesta-responder.component';
+import { EncuestaVerComponent } from './pages/encuestas/encuesta-ver/encuesta-ver.component';
+import { IsAdminGuard } from './guard/is-admin.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -28,8 +28,8 @@ const routes: Routes = [
     canActivate: [IsloggedGuard],
   },
   {path: 'listados', component: ListadosComponent, canActivate: [IsloggedGuard]},
-  {path: 'encuesta', component: EncuestaComponent, canActivate: [IsloggedGuard]},
-  {path: 'admin-encuesta', component: AdminEncuestaComponent, canActivate: [IsloggedGuard]},
+  {path: 'encuesta', component: EncuestaResponderComponent, canActivate: [IsloggedGuard]},
+  {path: 'encuesta-ver', component: EncuestaVerComponent, canActivate: [IsloggedGuard, IsAdminGuard]},
 
   { path: '**', pathMatch: 'full', redirectTo: 'error' },
 ];

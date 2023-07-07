@@ -1,1 +1,66 @@
-<p>encuesta-responder works!</p>
+<app-nav-var></app-nav-var>
+<div class="container" style="padding-top: 100px;">
+  <h2>Encuesta</h2>
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="fecha" class="form-label">Fecha:</label>
+          <input type="text" class="form-control" id="fecha" name="fecha">
+        </div>
+        <div class="mb-3">
+          <label for="nombreYApellido" class="form-label">Nombre y Apellido:</label>
+          <input type="text" class="form-control" id="nombreYApellido" name="nombreYApellido" formControlName="nombreYApellido">
+        </div>
+        <div class="mb-3">
+          <label for="edad" class="form-label">Edad:</label>
+          <input type="number" class="form-control" id="edad" name="edad" formControlName="edad">
+        </div>
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono:</label>
+          <input type="text" class="form-control" id="telefono" name="telefono" formControlName="telefono">
+        </div>
+        <div class="mb-3">
+          <label for="pregunta1" class="form-label">Pregunta 1:</label>
+          <input type="text" class="form-control" id="pregunta1" name="preguntas1">
+        </div>
+        <div class="mb-3">
+          <label for="respuesta1" class="form-label">Respuesta 1:</label>
+          <input type="number" class="form-control" id="respuesta1" name="respuesta1" formControlName="respuesta1">
+        </div>
+        <div class="mb-3">
+          <label for="pregunta2" class="form-label">Pregunta 2:</label>
+          <input type="text" class="form-control" id="pregunta2" name="pregunta2">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Juegos Jugados:</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="respuesta2-1" name="respuesta2" value="Ahorcado">
+            <label class="form-check-label" for="respuesta2-1">Ahorcado</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="respuesta2-2" name="respuesta2" value="MayorMenor">
+            <label class="form-check-label" for="respuesta2-2">Mayor Menor</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="respuesta2-3" name="respuesta2" value="Preguntados">
+            <label class="form-check-label" for="respuesta2-3">Preguntados</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="respuesta2-4" name="respuesta2" value="Pasapalabra">
+            <label class="form-check-label" for="respuesta2-4">Pasapalabra</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="pregunta3" class="form-label">Pregunta 3:</label>
+          <input type="text" class="form-control" id="pregunta3" name="pregunta3">
+        </div>
+        <div class="mb-3">
+          <label for="respuesta3" class="form-label">Respuesta 3:</label>
+          <input type="text" class="form-control" id="respuesta3" name="respuesta3">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -30,29 +30,24 @@
       >
         <div *ngIf="usuarioConectado; else loginBlock">
           <ul class="navbar-nav">
-            <li class="nav-item" *ngIf="usuarioConectado.esAdmin">
-              <a class="nav-link" routerLink="/encuesta-ver">
-                <i class="fa-solid fa-user"></i> Ver Encuestas
-              </a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/quien-soy">
+              <a class="nav-link" (click)="irARuta('/quien-soy')">
                 <i class="fa-solid fa-user"></i> Quien Soy
               </a>
             </li>
             <li *ngIf="usuarioConectado?.esAdmin" class="nav-item">
-              <a class="nav-link" routerLink="/Encuestas">
+              <a class="nav-link"  (click)="irARuta('/encuesta-ver')">
                 <i class="fas fa-poll"></i> Encuestas
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/chat">
+              <a class="nav-link" (click)="irARuta('/chat')" >
                 <i class="fas fa-comments"></i> Chat
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" (click)="cerrarSesion()">
-                <i class="fa-solid fa-sign-out-alt"></i>
+                <i class="fa-solid fa-sign-out-alt"></i> LogOff
               </a>
             </li>
           </ul>

@@ -53,7 +53,7 @@ import { FilterUserPipe } from './pipes/filter-user.pipe';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { ChatTableComponent } from './components/chat-table/chat-table.component';
 import { ListadosComponent } from './pages/listados/listados.component';
-import { EncuestaComponent } from './pages/encuesta/encuesta.component';
+
 import { AdminEncuestaComponent } from './pages/admin/admin-encuesta/admin-encuesta.component';
 import { NavVarModule } from './components/nav-var/nav-var.module';
 import { FilterPartidasPipe } from './pipes/filter-partidas.pipe';
@@ -75,7 +75,6 @@ import { EncuestaVerComponent } from './pages/encuestas/encuesta-ver/encuesta-ve
     UserTableComponent,
     ChatTableComponent,
     ListadosComponent,
-    EncuestaComponent,
     AdminEncuestaComponent,
     FilterPartidasPipe,
     DateIsoToDatePipe,
